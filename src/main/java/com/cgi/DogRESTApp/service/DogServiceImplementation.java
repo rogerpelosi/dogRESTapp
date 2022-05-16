@@ -45,9 +45,10 @@ public class DogServiceImplementation implements DogService {
 	public Dog updateDog(Dog updatedDog) throws DogWithThisIDDoesNotExistException {
 		Optional<Dog> dogOptional = dogRepo.findById(updatedDog.getId());
 		if(dogOptional.isPresent()) {
-			dogOptional.get().setBreed(updatedDog.getBreed());
-			dogOptional.get().setName(updatedDog.getName());
-			dogRepo.save(dogOptional.get());
+//			dogOptional.get().setBreed(updatedDog.getBreed());
+//			dogOptional.get().setName(updatedDog.getName());
+//			dogRepo.save(dogOptional.get());
+			dogRepo.save(updatedDog);
 			return dogOptional.get();
 		}
 		throw new DogWithThisIDDoesNotExistException();

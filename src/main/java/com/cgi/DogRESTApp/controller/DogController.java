@@ -59,9 +59,10 @@ public class DogController {
 	}
 	
 	@PutMapping(value = "/dogs/{dogId}")
-	public ResponseEntity<?> updateDogHandler(@RequestBody Dog updatedDog){
+	public ResponseEntity<?> updateDogHandler(@PathVariable("dogId") int id, @RequestBody Dog updatedDog){
 		ResponseEntity<?> re;
 		try {
+			updatedDog.setId(id);
 			Dog dog = dogServ.updateDog(updatedDog);
 			re = new ResponseEntity<Dog>(dog, HttpStatus.OK);
 		} catch(DogWithThisIDDoesNotExistException e) {
